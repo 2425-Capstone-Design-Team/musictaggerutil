@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'com.tftf'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+/* ./gradlew publishToMavenLocal */
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.tftf'
+            artifactId = 'util'
+            version = '1.0'
+
+            from components.java
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+}
+
+test {
+    useJUnitPlatform()
+}
