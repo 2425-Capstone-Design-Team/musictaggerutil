@@ -3,6 +3,21 @@ package com.tftf.util;
 public class Music {
     int id;
     String title;
+    String album;
+    String artist;
+    Long duration;
+    String path;
+    String artUri;
+
+    public Music(int id, String title, String album, String artist, Long duration, String path, String artUri) {
+        this.id = id;
+        this.title = title;
+        this.album = album;
+        this.artist = artist;
+        this.duration = duration;
+        this.path = path;
+        this.artUri = artUri;
+    }
 
     public int getId() {
         return id;
@@ -59,12 +74,4 @@ public class Music {
     public void setArtUri(String artUri) {
         this.artUri = artUri;
     }
-
-    String album;
-    String artist;
-    Long duration;
-    String path;
-    String artUri;
-
-
 }

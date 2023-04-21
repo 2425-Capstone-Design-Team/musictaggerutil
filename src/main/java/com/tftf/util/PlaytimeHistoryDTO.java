@@ -5,12 +5,12 @@ import com.google.gson.JsonObject;
 public class PlaytimeHistoryDTO {
     String email;
     int musicId;
-    JsonObject tagInfo;
+    JsonObject historyJO;
 
-    public PlaytimeHistoryDTO(String email, int musicId, JsonObject tagInfo) {
+    public PlaytimeHistoryDTO(String email, int musicId, JsonObject historyJO) {
         this.email = email;
         this.musicId = musicId;
-        this.tagInfo = tagInfo;
+        this.historyJO = historyJO;
     }
 
     public String getEmail() {
@@ -29,11 +29,11 @@ public class PlaytimeHistoryDTO {
         this.musicId = musicId;
     }
 
-    public JsonObject getTagInfo() {
-        return tagInfo;
+    public JsonObject getHistoryJO() {
+        return historyJO;
     }
 
-    public void setTagInfo(JsonObject tagInfo) {
-        this.tagInfo = tagInfo;
+    public void setHistoryJO(JsonObject historyJO) {
+        this.historyJO = historyJO;
     }
 }

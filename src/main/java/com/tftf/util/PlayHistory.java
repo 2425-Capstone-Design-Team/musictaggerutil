@@ -13,8 +13,9 @@ public class PlayHistory {
     HashMap<CharSequence, HashMap<CharSequence, Long>> historyMap;
 
     public PlayHistory() {
-        Surroundings surroundings = new Surroundings();
+        historyMap = new HashMap<>();
 
+        Surroundings surroundings = new Surroundings();
         for (CharSequence category : surroundings.info.keySet()) {
             historyMap.put(category, new HashMap<>());
         }
@@ -26,14 +27,18 @@ public class PlayHistory {
         for (CharSequence category : historyMap.keySet()) {
             CharSequence currentSurroundings = surroundings.info.get(category);
             HashMap<CharSequence, Long> history = historyMap.get(category);
-            history.replace(currentSurroundings, history.getOrDefault(currentSurroundings, 0L) + playtime);
+            if (!history.containsKey(currentSurroundings)) {
+                history.put(currentSurroundings, 0L);
+            }
+            history.replace(currentSurroundings, history.get(currentSurroundings) + playtime);
         }
     }
 
     public void importFromJson(JsonObject jo) {
         Gson gson = new Gson();
 
-        Type type = new TypeToken<HashMap<CharSequence, HashMap<CharSequence, Long>>>(){}.getType();
+        Type type = new TypeToken<HashMap<String, HashMap<String, Long>>>() {
+        }.getType();
         historyMap = gson.fromJson(jo, type);
     }
 
