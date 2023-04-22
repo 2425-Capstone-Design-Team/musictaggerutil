@@ -101,8 +101,8 @@ public class PlayHistory {
 
         for (CharSequence category : historySum.keySet()) {
             PriorityQueue<Pair<CharSequence, Long>> categoryRank = new PriorityQueue<>(
-                    historySum.get(category).size(), Comparator.comparing(Pair::getSecond));
-            // { p1, p2 -> (p1.second - p2.second).toInt() }
+                    historySum.get(category).size(), (p1, p2) -> (int) (p2.getSecond() - p1.getSecond()) );
+            //} { p1, p2 -> (p1.second - p2.second).toInt() }
 
             for (CharSequence tagKey : historySum.get(category).keySet()) {
                 Long tagVal = historySum.get(category).get(tagKey);
