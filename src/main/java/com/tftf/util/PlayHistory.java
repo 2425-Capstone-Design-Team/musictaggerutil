@@ -81,7 +81,7 @@ public class PlayHistory {
     */
 
 
-    HashMap<CharSequence, CharSequence> getMusicTag() {
+    public MusicTag getMusicTag() {
         HashMap<CharSequence, HashMap<CharSequence, Long>> historySum = new HashMap<>();
         for (CharSequence category : historyMap.keySet()) {
             historySum.put(category, new HashMap<>());
@@ -111,10 +111,10 @@ public class PlayHistory {
             tagRank.put(category, categoryRank);
         }
 
-        HashMap<CharSequence, CharSequence> musicTag = new HashMap<>();
+        MusicTag musicTag = new MusicTag();
         for (CharSequence category : tagRank.keySet()) {
             if (!tagRank.get(category).isEmpty()) {
-                musicTag.put(category, tagRank.get(category).peek().getFirst());
+                musicTag.tagList.add(tagRank.get(category).peek().getFirst());
             }
         }
         return musicTag;
