@@ -16,7 +16,7 @@ public class PlayHistory {
         historyMap = new HashMap<>();
 
         Surroundings surroundings = new Surroundings();
-        for (CharSequence category : surroundings.info.keySet()) {
+        for (CharSequence category : surroundings.infoMap.keySet()) {
             historyMap.put(category, new HashMap<>());
         }
     }
@@ -25,7 +25,7 @@ public class PlayHistory {
         totalPlaytime += playtime;
 
         for (CharSequence category : historyMap.keySet()) {
-            CharSequence currentSurroundings = surroundings.info.get(category);
+            CharSequence currentSurroundings = surroundings.infoMap.get(category);
             HashMap<CharSequence, Long> history = historyMap.get(category);
             if (!history.containsKey(currentSurroundings)) {
                 history.put(currentSurroundings, 0L);
@@ -114,7 +114,7 @@ public class PlayHistory {
         MusicTag musicTag = new MusicTag();
         for (CharSequence category : tagRank.keySet()) {
             if (!tagRank.get(category).isEmpty()) {
-                musicTag.tagList.add(tagRank.get(category).peek().getFirst());
+                musicTag.tagMap.put(category, tagRank.get(category).peek().getFirst());
             }
         }
         return musicTag;
