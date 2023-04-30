@@ -48,39 +48,6 @@ public class PlayHistory {
         return gson.toJsonTree(historyMap).getAsJsonObject();
     }
 
-    /*
-    fun importFromJson(jo:JsonObject) {
-        val categoryKeys = jo.keySet().iterator()
-        while (categoryKeys.hasNext()) {
-            val categoryKey = categoryKeys.next()
-            val tagJO = jo.get(categoryKey) as JsonObject
-            val tagKeys = tagJO.keySet().iterator()
-            while (tagKeys.hasNext()) {
-                val tagKey = tagKeys.next()
-                tagInfoMap[categoryKey]!![tagKey] = tagJO.get(tagKey).toString().toLong()
-            }
-        }
-    }
-    */
-
-    /*
-    fun exportToJson() : JsonObject {
-        val tagInfoJO = JsonObject()
-
-        for (category in tagInfoMap) {
-            val categoryJO = JsonObject()
-
-            for (tag in category.value) {
-                categoryJO.addProperty(tag.key.toString(), tag.value)
-            }
-
-            tagInfoJO.add(category.key.toString(), categoryJO)
-        }
-        return tagInfoJO
-    }
-    */
-
-
     public MusicTag getMusicTag() {
         HashMap<CharSequence, HashMap<CharSequence, Long>> historySum = new HashMap<>();
         for (CharSequence category : historyMap.keySet()) {
