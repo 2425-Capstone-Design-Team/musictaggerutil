@@ -12,6 +12,10 @@ public class Playlist {
         this.musicList = musicList;
     }
 
+    public Playlist(Playlist playlist) {
+        this(playlist.name, playlist.musicList);
+    }
+
     public String getName() {
         return name;
     }
