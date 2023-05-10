@@ -3,9 +3,10 @@ package com.tftf.util;
 import com.google.gson.JsonObject;
 
 public class PlaytimeHistoryDTO {
-    String email;
-    int musicId;
-    Long totalPlaytime;
+    /*
+    String userID;
+    int musicID;
+    Long playedTime;
     JsonObject historyJO;
 
     public PlaytimeHistoryDTO(String email, int musicId, Long totalPlaytime, JsonObject historyJO) {
@@ -46,4 +47,5 @@ public class PlaytimeHistoryDTO {
     public void setHistoryJO(JsonObject historyJO) {
         this.historyJO = historyJO;
     }
+    */
 }

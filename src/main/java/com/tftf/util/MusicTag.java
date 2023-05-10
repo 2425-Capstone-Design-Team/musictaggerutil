@@ -14,7 +14,15 @@ public class MusicTag {
         return tagMap.size();
     }
 
-    public ArrayList<CharSequence> toList() {
-        return new ArrayList<>(tagMap.values());
+    public ArrayList<Pair<CharSequence, CharSequence>> toList() {
+        ArrayList<Pair<CharSequence, CharSequence>> tagList = new ArrayList<>();
+
+        for (CharSequence key : tagMap.keySet()) {
+            CharSequence val = tagMap.get(key);
+
+            tagList.add(new Pair<>(key, val));
+        }
+
+        return tagList;
     }
 }

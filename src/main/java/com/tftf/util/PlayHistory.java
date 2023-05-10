@@ -8,11 +8,15 @@ import java.lang.reflect.Type;
 import java.util.*;
 
 public class PlayHistory {
-
-    public Long totalPlaytime = 0L;
+    public String userID;
+    public int musicID;
+    public Long totalPlayedTime;
     HashMap<CharSequence, HashMap<CharSequence, Long>> historyMap;
 
-    public PlayHistory() {
+    public PlayHistory(String userID, int musicID) {
+
+        totalPlayedTime = 0L;
+
         historyMap = new HashMap<>();
 
         Surroundings surroundings = new Surroundings();
@@ -21,8 +25,16 @@ public class PlayHistory {
         }
     }
 
-    public void addPlaytime(Surroundings surroundings, Long playtime) {
-        totalPlaytime += playtime;
+    public PlayHistory(String userID, int musicID, Long totalPlayedTime, JsonObject historyJO) {
+        this.userID = userID;
+        this.musicID = musicID;
+        this.totalPlayedTime = totalPlayedTime;
+
+        JsonConverter.setPlayHistoryFromJson(this, historyJO);
+    }
+
+    public void cumulatePlayedTime(Long playedTime, Surroundings surroundings) {
+        totalPlayedTime += playedTime;
 
         for (CharSequence category : historyMap.keySet()) {
             CharSequence currentSurroundings = surroundings.infoMap.get(category);
@@ -30,29 +42,15 @@ public class PlayHistory {
             if (!history.containsKey(currentSurroundings)) {
                 history.put(currentSurroundings, 0L);
             }
-            history.replace(currentSurroundings, history.get(currentSurroundings) + playtime);
+            history.replace(currentSurroundings, history.get(currentSurroundings) + playedTime);
         }
     }
 
-    public Long getPlaytime(CharSequence category, CharSequence section) {
+    public Long getPlayedTime(CharSequence category, CharSequence tag) {
 
         if (historyMap.containsKey(category)) {
-            return historyMap.get(category).getOrDefault(section, 0L);
+            return historyMap.get(category).getOrDefault(tag, 0L);
         }
         else return 0L;
-    }
-
-    public void importFromJson(JsonObject jo) {
-        Gson gson = new Gson();
-
-        Type type = new TypeToken<HashMap<String, HashMap<String, Long>>>() {
-        }.getType();
-        historyMap = gson.fromJson(jo, type);
-    }
-
-    public JsonObject exportToJson() {
-        Gson gson = new Gson();
-
-        return gson.toJsonTree(historyMap).getAsJsonObject();
     }
 }

@@ -4,31 +4,15 @@ import java.util.ArrayList;
 
 public class Playlist {
 
-    String name;
-    ArrayList<Integer> musicList;
+    public String userID;
+    public String name;
+    public String description;
+    public ArrayList<Integer> musicList;
 
-    public Playlist(String name, ArrayList<Integer> musicList) {
+    public Playlist(String userID, String name, String description, ArrayList<Integer> musicList) {
+        this.userID = userID;
         this.name = name;
-        this.musicList = musicList;
-    }
-
-    public Playlist(Playlist playlist) {
-        this(playlist.name, playlist.musicList);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ArrayList<Integer> getMusicList() {
-        return musicList;
-    }
-
-    public void setMusicList(ArrayList<Integer> musicList) {
+        this.description = description;
         this.musicList = musicList;
     }
 }
