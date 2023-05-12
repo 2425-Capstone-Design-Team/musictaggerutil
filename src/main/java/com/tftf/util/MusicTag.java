@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MusicTag {
-    public HashMap<CharSequence, CharSequence> tagMap;
+    public HashMap<String, String> tagMap;
 
     public MusicTag() {
         tagMap = new HashMap<>();
@@ -14,11 +14,11 @@ public class MusicTag {
         return tagMap.size();
     }
 
-    public ArrayList<Pair<CharSequence, CharSequence>> toList() {
-        ArrayList<Pair<CharSequence, CharSequence>> tagList = new ArrayList<>();
+    public ArrayList<Pair<String, String>> toList() {
+        ArrayList<Pair<String, String>> tagList = new ArrayList<>();
 
-        for (CharSequence key : tagMap.keySet()) {
-            CharSequence val = tagMap.get(key);
+        for (String key : tagMap.keySet()) {
+            String val = tagMap.get(key);
 
             tagList.add(new Pair<>(key, val));
         }

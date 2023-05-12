@@ -11,7 +11,7 @@ public class PlayHistory {
     public String userID;
     public int musicID;
     public Long totalPlayedTime;
-    HashMap<CharSequence, HashMap<CharSequence, Long>> historyMap;
+    HashMap<String, HashMap<String, Long>> historyMap;
 
     public PlayHistory(String userID, int musicID) {
         this.userID = userID;
@@ -22,7 +22,7 @@ public class PlayHistory {
         historyMap = new HashMap<>();
 
         Surroundings surroundings = new Surroundings();
-        for (CharSequence category : surroundings.infoMap.keySet()) {
+        for (String category : surroundings.infoMap.keySet()) {
             historyMap.put(category, new HashMap<>());
         }
     }
@@ -38,17 +38,17 @@ public class PlayHistory {
     public void cumulatePlayedTime(Long playedTime, Surroundings surroundings) {
         totalPlayedTime += playedTime;
 
-        for (CharSequence category : historyMap.keySet()) {
-            CharSequence currentSurroundings = surroundings.infoMap.get(category);
-            HashMap<CharSequence, Long> history = historyMap.get(category);
-            if (!history.containsKey(currentSurroundings)) {
-                history.put(currentSurroundings, 0L);
+        for (String category : historyMap.keySet()) {
+            String currentSurroundings = surroundings.infoMap.get(category);
+            HashMap<String, Long> tagMap = historyMap.get(category);
+            if (!tagMap.containsKey(currentSurroundings)) {
+                tagMap.put(currentSurroundings, 0L);
             }
-            history.replace(currentSurroundings, history.get(currentSurroundings) + playedTime);
+            tagMap.replace(currentSurroundings, tagMap.get(currentSurroundings) + playedTime);
         }
     }
 
-    public Long getPlayedTime(CharSequence category, CharSequence tag) {
+    public Long getPlayedTime(String category, String tag) {
 
         if (historyMap.containsKey(category)) {
             return historyMap.get(category).getOrDefault(tag, 0L);
