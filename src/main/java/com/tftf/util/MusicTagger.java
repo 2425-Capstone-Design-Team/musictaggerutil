@@ -1,5 +1,6 @@
 package com.tftf.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -32,10 +33,6 @@ public class MusicTagger {
         return musicTag;
     }
 
-    public static MusicTag getMusicTag(PlayHistory playHistory) {
-        return getMusicTag(playHistory.historyMap);
-    }
-
     public static HashMap<CharSequence, HashMap<CharSequence, Long>> getHistoryMapSum(List<PlayHistory> playHistoryList) {
 
         HashMap<CharSequence, HashMap<CharSequence, Long>> historySum = new HashMap<>();
@@ -57,6 +54,10 @@ public class MusicTagger {
         }
 
         return historySum;
+    }
+
+    public static MusicTag getMusicTag(PlayHistory playHistory) {
+        return getMusicTag(playHistory.historyMap);
     }
 
     public static MusicTag getMusicTag(List<PlayHistory> playHistoryList) {

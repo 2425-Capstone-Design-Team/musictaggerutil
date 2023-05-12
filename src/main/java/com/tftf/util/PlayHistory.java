@@ -14,6 +14,8 @@ public class PlayHistory {
     HashMap<CharSequence, HashMap<CharSequence, Long>> historyMap;
 
     public PlayHistory(String userID, int musicID) {
+        this.userID = userID;
+        this.musicID = musicID;
 
         totalPlayedTime = 0L;
 
